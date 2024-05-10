@@ -1,0 +1,38 @@
+<h2>Add New Student</h2>
+<form (ngSubmit)="onSubmit()" class="student-form">
+    <div>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" [(ngModel)]="newEtudiant.nom" required>
+    </div>
+    <div>
+        <label for="prenom">Prenom:</label>
+        <input type="text" id="prenom" name="prenom" [(ngModel)]="newEtudiant.prenom" required>
+    </div>
+    <div>
+        <label for="dateNaissance">Date de Naissance:</label>
+        <input type="date" id="dateNaissance" name="dateNaissance" [(ngModel)]="newEtudiant.date_naissance" required>
+    </div>
+    <div>
+        <label for="numTel">Numéro de Téléphone:</label>
+        <input type="text" id="numTel" name="numTel" [(ngModel)]="newEtudiant.numTel">
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="newEtudiant.email" required>
+    </div>
+    <div>
+        <label for="cin">CIN:</label>
+        <input type="text" id="cin" name="cin" [(ngModel)]="newEtudiant.cin" required>
+    </div>
+    <div>
+        <label for="niveauScolaire">Niveau Scolaire:</label>
+        <input type="text" id="niveauScolaire" name="niveauScolaire" [(ngModel)]="newEtudiant.niveauScolaire">
+    </div>
+    <div>
+        <label for="montanAtpaye">Montant à Payer:</label>
+        <input type="number" id="montanAtpaye" name="montanAtpaye" [(ngModel)]="newEtudiant.montantApaye">
+    </div>
+
+    <button type="submit">Create</button>
+    <button type="button" (click)="closeModal()">Close</button>
+</form>

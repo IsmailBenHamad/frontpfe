@@ -1,0 +1,15 @@
+<!-- addcategorie.component.html -->
+<h2>Add New Category</h2>
+<form (ngSubmit)="addCategory()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Enter name" [(ngModel)]="categorie.nom" name="name" required>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Enter description" [(ngModel)]="categorie.description" name="description"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Add Category</button>
+</form>

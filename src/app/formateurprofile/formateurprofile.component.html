@@ -1,0 +1,64 @@
+<!-- Add Bootstrap and Angular Material CSS links -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<mat-drawer-container class="example-container">
+  <!-- Sidenav for Account Information -->
+  <mat-drawer mode="side" opened class="example-sidenav">
+    <div class="p-3">
+      <h4>Informations du Compte</h4>
+      <div *ngIf="compte" >
+        <div >Informations du Compte</div>
+        <div >
+          <p>Nom d'utilisateur: {{ compte.nomUtilisateur }}</p>
+          <p>Rôle: {{ compte.role }}</p>
+          <p>Statut: {{ compte.estActive ? 'Actif' : 'Inactif' }}</p>
+        </div>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <!-- Main Content Area -->
+  <mat-drawer-content>
+    <div class="container mt-4">
+      <!-- Teacher Profile -->
+      <div *ngIf="enseig" class="card mb-3">
+        <div class="card-header bg-primary text-white">Profil de l'enseignant</div>
+        <div class="card-body">
+          <h5 class="card-title">{{ enseig.prenom }} {{ enseig.nom }}</h5>
+          <p class="card-text">Plus d'infos ici...</p>
+        </div>
+      </div>
+
+      <!-- Modules and Training -->
+      <div *ngIf="modules && modules.length > 0">
+        <div class="card mb-3" *ngFor="let module of modules">
+          <div class="card-header bg-info text-white">{{ module.nomModule }}</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="etudiants-info">
+                <h3>Étudiants Inscrits:</h3>
+                <ul>
+                  <li *ngFor="let etudiant of module.etudiants">
+                    <strong>{{ etudiant?.prenom }} {{ etudiant?.nom }}</strong>
+                    <p>Email: {{ etudiant.email }}</p>
+                    <p>Niveau Scolaire: {{ etudiant.niveauScolaire }}</p>
+                    <button (click)="addStudentToAbsence(etudiant)" class="btn btn-danger">Ajouter à l'absence</button>
+                  </li>
+                </ul>
+              </div>
+              <div class="formation-info">
+                <h3>Formation: {{ module.formations.nomformation }}</h3>
+                <p>Description: {{ module.formations.description }}</p>
+                <p>Durée: {{ module.formations.duree }}</p>
+                <p>Prix: {{ module.formations.prix }}€</p>
+                <p>Niveau: {{ module.formations.niveau }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

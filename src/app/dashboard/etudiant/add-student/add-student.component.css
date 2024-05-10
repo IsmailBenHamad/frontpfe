@@ -1,0 +1,29 @@
+.student-form {
+  width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-form div {
+  margin-bottom: 15px;
+}
+
+.student-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.student-form input {
+  width: calc(100% - 10px); /* Adjust width to accommodate padding */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.student-form button {
+  margin-top: 10px;
+}

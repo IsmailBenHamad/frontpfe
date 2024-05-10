@@ -1,0 +1,30 @@
+<h2>Update Formation</h2>
+
+<form [formGroup]="updateFormationForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nomformation">Nom Formation:</label>
+    <input type="text" id="nomformation" formControlName="nomformation" required>
+  </div>
+  <div>
+    <label for="duree">Durée:</label>
+    <input type="text" id="duree" formControlName="duree" required>
+  </div>
+  <div>
+    <label for="prix">Prix:</label>
+    <input type="number" id="prix" formControlName="prix" required>
+  </div>
+  <div>
+    <label for="niveau">Niveau:</label>
+    <input type="text" id="niveau" formControlName="niveau" required>
+  </div>
+  <div>
+    <label for="categorie">Catégorie:</label>
+    <select id="categorie" formControlName="categorie" required>
+        <option *ngFor="let category of allCategories" [value]="category._id">{{ category.nom }}</option>
+      </select>
+      
+</div>
+
+  <button type="submit">Update Formation</button>
+  <button type="button" (click)="closeModal()">Cancel</button>
+</form>
