@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthService } from 'src/app/auth.service';
 import { Etudiant } from 'src/app/model/etudiant';
 import { EtudiantService } from '../etudiant.service';
 
@@ -10,11 +9,10 @@ import { EtudiantService } from '../etudiant.service';
   styleUrls: ['./register-account.component.css']
 })
 export class RegisterAccountComponent {
-
+  hide = true;
   constructor(
     public dialogRef: MatDialogRef<RegisterAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { etudiant: Etudiant },
-    private authService: AuthService,
     private etudiantService: EtudiantService,
   ) {}
 

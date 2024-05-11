@@ -9,6 +9,9 @@
     <div class="p-3">
       <h4>Informations du Compte</h4>
       <div *ngIf="compte" >
+        <div>
+          <img>{{compte.imageUrl}}
+        </div>
         <div >Informations du Compte</div>
         <div >
           <p>Nom d'utilisateur: {{ compte.nomUtilisateur }}</p>

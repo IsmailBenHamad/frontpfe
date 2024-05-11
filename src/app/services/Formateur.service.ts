@@ -31,9 +31,9 @@ export class EnseignantService {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
-  addCompteToEnseignant(id: string, compteData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/${id}/add-compte`, compteData);
-  }
+    addCompteToEnseignant(id: string, compteData: any): Observable<any> {
+      return this.http.post(`${this.baseUrl}/${id}/add-compte`, compteData);
+    }
 
   deleteCompteFromEnseignant(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}/delete-compte`);

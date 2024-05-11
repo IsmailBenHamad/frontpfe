@@ -53,8 +53,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let formateur">
-          <button class="btn btn-primary btn-sm" >Update</button>
-          <button class="btn btn-danger btn-sm" >Delete</button>
+          <button class="btn btn-primary btn-sm" (click)="openUpdateFormateurDialog(formateur)">Update</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEnseignant(formateur._id)">Delete</button>
         </td>
       </ng-container>
 

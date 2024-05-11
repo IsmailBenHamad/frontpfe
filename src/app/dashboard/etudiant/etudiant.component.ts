@@ -121,8 +121,6 @@ export class EtudiantComponent implements OnInit , AfterViewInit{
     if (etudiant && etudiant._id) { // Check if etudiant and _id are defined
       const dialogRef = this.dialog.open(RegisterAccountComponent, {
         data: { etudiant }, // Pass the etudiant data to the registration modal
-        width: '600px',
-        height: '400px',
         // center horizontally and vertically
         // Add any other modal options here
       });

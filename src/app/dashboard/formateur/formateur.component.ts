@@ -3,6 +3,8 @@ import { EnseignantService } from 'src/app/services/Formateur.service';
 import { Enseignant } from 'src/app/model/enseignant';
 import { MatDialog } from '@angular/material/dialog';
 import { FormateurAddComponent } from './formateur-add/formateur-add.component'; // Adjust path here
+import { FormateurUpdateComponent } from './formateur-update/formateur-update.component';
+import { FormateurRegisterComponent } from './formateur-register/formateur-register.component';
 
 @Component({
   selector: 'app-formateur',
@@ -41,9 +43,63 @@ export class FormateurComponent implements OnInit {
       // Handle dialog close event if needed
     });
   }
-  openRegister(formateur: Enseignant): void {
-    // Implement registration logic here
+  deleteEnseignant(id: string): void {
+    if (confirm('Are you sure you want to delete this enseignant?')) {
+      this.enseignantService.deleteEnseignant(id).subscribe({
+        next: () => {
+          // Remove the enseignant from the local array
+          this.formateurs = this.formateurs.filter(formateur => formateur._id !== id);
+        },
+        error: (error) => {
+          console.error('Error deleting enseignant:', error);
+          alert('Failed to delete enseignant');  // You may decide to handle this differently
+        }
+      });
+    }
   }
+  
+  refreshEnseignants(): void {
+    this.enseignantService.getAllEnseignant().subscribe(
+      (formateurs: Enseignant[]) => {
+        this.formateurs = formateurs;
+      },
+      (error) => {
+        console.error('Error fetching formateurs:', error);
+      }
+    );
+  }
+  
+  openRegister(formateur: Enseignant): void {
+    if (!formateur._id) {
+      console.error('Attempted to open register dialog without a valid formateur ID');
+      return;
+    }
+    
+    const dialogRef = this.dialog.open(FormateurRegisterComponent, {
+      width: '400px',
+      data: { formateurId: formateur._id }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Registration successful for formateur ID:', formateur._id);
+      }
+    });
+  }
+  
 
-  // Add other methods like openUpdateFormateurModal(formateur: Enseignant), etc.
+  openUpdateFormateurDialog(formateur: Enseignant): void {
+    const dialogRef = this.dialog.open(FormateurUpdateComponent, {
+      width: '600px',
+      data: { formateur: formateur }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.refreshEnseignants(); // Optionally refresh the list if needed
+      }
+    });
+  }
+  
+
 }
