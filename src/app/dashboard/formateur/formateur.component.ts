@@ -44,7 +44,7 @@ export class FormateurComponent implements OnInit {
     });
   }
   deleteEnseignant(id: string): void {
-    if (confirm('Are you sure you want to delete this enseignant?')) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cet Formateur ?')) {
       this.enseignantService.deleteEnseignant(id).subscribe({
         next: () => {
           // Remove the enseignant from the local array

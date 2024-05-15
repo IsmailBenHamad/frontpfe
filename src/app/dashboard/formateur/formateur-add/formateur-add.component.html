@@ -1,5 +1,5 @@
 <!-- formateur-add.component.html -->
-<h2 mat-dialog-title>Add New Formateur</h2>
+<h2 mat-dialog-title>Ajouter Formateur</h2>
 <mat-dialog-content>
     <form [formGroup]="formateurForm" (ngSubmit)="onSubmit()">
         <!-- Nom Field -->
@@ -38,8 +38,8 @@
       <input matInput placeholder="Certificat" formControlName="certificat">
     </mat-form-field>
     <mat-dialog-actions>
-        <button mat-button [mat-dialog-close]="null">Cancel</button>
-        <button mat-button color="primary" type="submit" >Add</button>
+        <button mat-button class="btn btn-danger btn-sm" [mat-dialog-close]="null">Annuler</button>
+        <button mat-button class="btn btn-primary btn-sm" color="primary" type="submit" >Ajouter</button>
       </mat-dialog-actions>
       
   </form>

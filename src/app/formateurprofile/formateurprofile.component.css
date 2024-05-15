@@ -8,15 +8,23 @@ body {
   }
   
   /* Amélioration de la visibilité des cartes */
-  .card {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    padding: 20px;
-  }
-  
+  .modules-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.module-card {
+    width: 296px;
+    margin: 10px;
+}
+
+.module-image {
+    height: 197.325px; /* Exact height */
+    width: 296px;      /* Exact width */
+    object-fit: cover; /* This will cover the area without distorting the image */
+}
+
   /* Titres pour les différentes sections */
   h1, h2, h3 {
     color: #0056b3;
@@ -56,13 +64,7 @@ body {
   }
   
   /* Espacement et styles pour les en-têtes */
-  .card-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border-radius: 5px 5px 0 0;
-    font-size: 20px;
-  }
+
   
   .img-fluid.rounded-circle {
     width: 150px; /* Fix image width */

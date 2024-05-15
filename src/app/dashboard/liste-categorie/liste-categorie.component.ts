@@ -31,7 +31,6 @@ export class ListeCategorieComponent implements OnInit {
   }
   openAddCategoryDialog(): void {
     const dialogRef = this.dialog.open(AddcategorieComponent, {
-      width: '400px' // Set the width as you prefer
       // You can pass data to the dialog as well if needed
     });
   
@@ -43,7 +42,7 @@ export class ListeCategorieComponent implements OnInit {
   }
   openUpdateCategorieDialog(categorie: Categorie): void {
     const dialogRef = this.dialog.open(UpdateCategorieComponent, {
-      width: '250px',
+
       data: { categorie }
     });
   

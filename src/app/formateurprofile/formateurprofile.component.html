@@ -1,4 +1,3 @@
-<!-- Add Bootstrap and Angular Material CSS links -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,61 +6,57 @@
   <!-- Sidenav for Account Information -->
   <mat-drawer mode="side" opened class="example-sidenav">
     <div class="p-3">
-      <h4>Informations du Compte</h4>
-      <div *ngIf="compte" >
-        <div>
-          <img>{{compte.imageUrl}}
+        <div class="card-header bg-primary text-white">Profil de l'enseignant</div>
+      <br/>
+        <div *ngIf="compte" class="profile-image">
+          <img *ngIf="compte.imageUrl; else noImage" [src]="compte.imageUrl" class="img-fluid rounded-circle mb-2"
+              style="width: 100px; height: 100px; object-fit: cover;">
+          <ng-template #noImage>
+            <div class="bg-secondary d-flex justify-content-center align-items-center"
+                style="width: 100px; height: 100px; border-radius: 50%; color: white;">
+              No Image
+            </div>
+          </ng-template>
+          <input type="file" (change)="onFileSelected($event)" hidden #fileInput>
+          <button class="btn btn-primary mt-2" (click)="fileInput.click()">Upload Image</button>
         </div>
-        <div >Informations du Compte</div>
-        <div >
-          <p>Nom d'utilisateur: {{ compte.nomUtilisateur }}</p>
-          <p>Rôle: {{ compte.role }}</p>
-          <p>Statut: {{ compte.estActive ? 'Actif' : 'Inactif' }}</p>
-        </div>
+        <div *ngIf="enseig"  class="p-3">
+          <p>First Name: {{ enseig.prenom }} </p>
+          <p>Last Name: {{ enseig.nom }}</p>
+          <p *ngIf="compte" >Rôle: {{ compte.role }}</p>
+
       </div>
+
+
     </div>
+
   </mat-drawer>
 
   <!-- Main Content Area -->
   <mat-drawer-content>
-    <div class="container mt-4">
-      <!-- Teacher Profile -->
-      <div *ngIf="enseig" class="card mb-3">
-        <div class="card-header bg-primary text-white">Profil de l'enseignant</div>
-        <div class="card-body">
-          <h5 class="card-title">{{ enseig.prenom }} {{ enseig.nom }}</h5>
-          <p class="card-text">Plus d'infos ici...</p>
+    <div class="modules-container">
+        <div *ngFor="let module of modules" class="module-card">
+            <div class="course-item bg-light">
+                <div class="position-relative overflow-hidden">
+                    <img class="img-fluid module-image" [src]="module.formations.image" alt="">
+                    <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                        <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                        <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                    </div>
+                </div>
+                <div class="text-center p-4 pb-0">
+                    <h3 class="mb-0">{{module.nomModule}}</h3>
+                    <div class="mb-3">
+                        <!-- star ratings -->
+                    </div>
+                    <h5 class="mb-4">{{module.formations.nomformation}}</h5>
+                </div>
+                <div class="d-flex border-top">
+                    <!-- card footer -->
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Modules and Training -->
-      <div *ngIf="modules && modules.length > 0">
-        <div class="card mb-3" *ngFor="let module of modules">
-          <div class="card-header bg-info text-white">{{ module.nomModule }}</div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <div class="etudiants-info">
-                <h3>Étudiants Inscrits:</h3>
-                <ul>
-                  <li *ngFor="let etudiant of module.etudiants">
-                    <strong>{{ etudiant?.prenom }} {{ etudiant?.nom }}</strong>
-                    <p>Email: {{ etudiant.email }}</p>
-                    <p>Niveau Scolaire: {{ etudiant.niveauScolaire }}</p>
-                    <button (click)="addStudentToAbsence(etudiant)" class="btn btn-danger">Ajouter à l'absence</button>
-                  </li>
-                </ul>
-              </div>
-              <div class="formation-info">
-                <h3>Formation: {{ module.formations.nomformation }}</h3>
-                <p>Description: {{ module.formations.description }}</p>
-                <p>Durée: {{ module.formations.duree }}</p>
-                <p>Prix: {{ module.formations.prix }}€</p>
-                <p>Niveau: {{ module.formations.niveau }}</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </mat-drawer-content>
+</mat-drawer-content>
+
 </mat-drawer-container>

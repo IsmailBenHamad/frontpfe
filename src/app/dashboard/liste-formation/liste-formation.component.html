@@ -1,5 +1,5 @@
 <div class="main-content">
-    <button class="btn btn-primary btn-sm" (click)="openAddFormationDialog()">Add New Formation</button>
+    <button class="btn btn-primary btn-sm" (click)="openAddFormationDialog()">Ajouter Formation</button>
 
     <div class="table-responsive">
         <table mat-table [dataSource]="formations" class="mat-elevation-z8">
@@ -52,8 +52,8 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Actions </th>
                 <td mat-cell *matCellDef="let formation">
-                    <button class="btn btn-primary btn-sm" (click)="openUpdateFormationModal(formation)">Update</button>
-                    <button class="btn btn-danger btn-sm" (click)="deleteFormation(formation._id)">Delete</button>
+                    <button class="btn btn-primary btn-sm" (click)="openUpdateFormationModal(formation)">Modifier</button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteFormation(formation._id)">Supprimer</button>
                 </td>
             </ng-container>               
 

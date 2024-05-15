@@ -1,6 +1,6 @@
 <!-- formateur.component.html -->
 <div class="main-content">
-  <button class="btn btn-primary btn-sm" (click)="openAddFormateurDialog()">New Formateur</button>
+  <button class="btn btn-primary btn-sm" (click)="openAddFormateurDialog()">Ajouter Formateur  </button>
 
   <div class="table-responsive">
     <table mat-table [dataSource]="formateurs" class="mat-elevation-z8">
@@ -44,8 +44,8 @@
       <ng-container matColumnDef="compte">
         <th mat-header-cell *matHeaderCellDef> Compte </th>
         <td mat-cell *matCellDef="let formateur">
-          <span *ngIf="formateur.compte">Registered</span>
-          <button *ngIf="!formateur.compte" class="btn btn-success btn-sm" (click)="openRegister(formateur)">Register</button>
+          <span *ngIf="formateur.compte">Supprimer Compte</span>
+          <button *ngIf="!formateur.compte" class="btn btn-success btn-sm" (click)="openRegister(formateur)">Ajouter Compte</button>
         </td>
       </ng-container>
 
@@ -53,8 +53,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let formateur">
-          <button class="btn btn-primary btn-sm" (click)="openUpdateFormateurDialog(formateur)">Update</button>
-          <button class="btn btn-danger btn-sm" (click)="deleteEnseignant(formateur._id)">Delete</button>
+          <button class="btn btn-primary btn-sm" (click)="openUpdateFormateurDialog(formateur)">Modifier</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEnseignant(formateur._id)">Supprimer</button>
         </td>
       </ng-container>
 

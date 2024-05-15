@@ -69,13 +69,20 @@ export class CompteComponent implements OnInit {
   handleFileInput(event: any, isUpdate: boolean = false) {
     const element = event.target as HTMLInputElement;
     const files = element.files;
+    console.log('File selected:', files);
     if (files && files.length > 0) {
       this.selectedFile = files.item(0);
+      console.log('Handling file:', this.selectedFile);
       if (isUpdate) {
         this.updateImage();
+      } else if (this.compte && this.compte._id) {
+        this.uploadImage(event, this.compte._id);  // Ensures _id is not undefined
+      } else {
+        console.error('Account or account ID is undefined');
       }
     }
   }
+
 
   uploadImage(event: Event, compteId: string) {
     event.preventDefault();
@@ -83,12 +90,14 @@ export class CompteComponent implements OnInit {
       this.accountService.uploadAccountImage(compteId, this.selectedFile).subscribe({
         next: (response) => {
           console.log('Image uploaded successfully', response);
-          if (this.compte) {  // Check if this.compte is not null before accessing its properties
+          if (this.compte) {  // Additional check for compte not being null
             this.compte.imageUrl = response.imageUrl;
           }
         },
         error: (error) => console.error('Error uploading image', error)
       });
+    } else {
+      console.error('Selected file or account details are undefined');
     }
   }
 
@@ -97,16 +106,17 @@ export class CompteComponent implements OnInit {
       this.accountService.updateAccountImage(this.compte._id, this.selectedFile).subscribe({
         next: (response) => {
           console.log('Image updated successfully', response);
-          if (this.compte) {  // Check if this.compte is not null before accessing its properties
+          if (this.compte) {  // Ensure compte is not null
             this.compte.imageUrl = response.imageUrl;
             this.fetchAccountDetails();
           }
         },
         error: (error) => console.error('Error updating image', error)
       });
+    } else {
+      console.error('Selected file or account details are missing');
     }
   }
-
   triggerFileInput() {
     this.fileInput.nativeElement.click();
   }

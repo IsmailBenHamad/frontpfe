@@ -66,8 +66,7 @@ export class EtudiantComponent implements OnInit , AfterViewInit{
   
   openAddStudentDialog(): void {
     const dialogRef = this.dialog.open(AddStudentComponent, {
-      width: '600px',
-      height: '600px',
+
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -80,7 +79,7 @@ export class EtudiantComponent implements OnInit , AfterViewInit{
   
   
   deleteEtudiant(id: string): void {
-    if (confirm('Are you sure you want to delete this student?')) {
+    if (confirm('    Êtes-vous sûr de vouloir supprimer cet Candidat ?')) {
       this.etudiantService.deleteEtudiant(id).subscribe({
         next: () => {
           this.snackBar.open('Student successfully deleted', 'Close', { duration: 2000 });
@@ -99,10 +98,7 @@ export class EtudiantComponent implements OnInit , AfterViewInit{
     const dialogRef = this.dialog.open(UpdateStudentComponent, {
       data: { etudiant }, // Pass the student data to the update student component
 
-      width: '600px', // Specify the width
-      height: '600px',
-      
-      // Add any other modal options here
+
     });
 
     dialogRef.componentInstance.studentUpdated.subscribe(() => {

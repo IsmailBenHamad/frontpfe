@@ -17,8 +17,8 @@
             style="width: 100px; height: 100px; border-radius: 50%; color: white;">
             No Image
           </div>
-          <input type="file" (change)="handleFileInput($event, !!compte?.imageUrl)" accept="image/*"
-            style="display: none;" #fileInput>
+          <input type="file" (change)="handleFileInput($event, !!compte?.imageUrl)" accept="image/*" hidden #fileInput>
+
           <button (click)="triggerFileInput()" class="btn btn-info mt-2 btn-sm">{{ compte?.imageUrl ? 'Update Image' : 'Upload Image' }}</button>
         </div>
         <div class="account-details">
