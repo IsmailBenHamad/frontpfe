@@ -38,17 +38,21 @@ const routes: Routes = [
   { path: 'formateurprofile', component: FormateurprofileComponent },
 
   { path: 'modules', component: ModulesComponent },
-  { path: 'formation', component: FormationComponent },
-  { 
-    path: 'dashboard', 
+  {
+    path: 'formateurprofile',
+    loadChildren: () => import('./formateurprofile/formateurprofile.module').then(m => m.FormateurprofileModule)
+  },
+  {
+    path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard] // Apply the AuthGuard here
-  } 
-  
+  }
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true }) // Only in development!
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
