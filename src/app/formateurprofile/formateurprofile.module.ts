@@ -6,12 +6,14 @@ import { FormateurcourseComponent } from './formateurcourse/formateurcourse.comp
 import { RouterModule, Routes } from '@angular/router';
 import { FormateurLayoutComponent } from './formateur-layout/formateur-layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ModuleDetailsComponent } from './module-details/module-details.component';
 
 
 @NgModule({
   declarations: [
     FormateurcourseComponent,
-    FormateurLayoutComponent
+    FormateurLayoutComponent,
+    ModuleDetailsComponent
   ],
   imports: [
     

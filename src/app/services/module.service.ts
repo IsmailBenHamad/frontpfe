@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Module } from '../model/module';
 import { Etudiant } from '../model/etudiant';
 
@@ -23,9 +23,14 @@ export class ModuleService {
     return this.http.post<Etudiant[]>(`${this.baseUrl}/etudiants`, { etudiantIds });
   }
 
-  getModuleById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/modules/${id}`);
+  getModuleById(id: string): Observable<Module> {
+    return this.http.get<Module>(`${this.baseUrl}/modules/${id}`).pipe(
+      map(response => {
+        return response;
+      })
+    );
   }
+  
 
   createModule(moduleData: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/modules`, moduleData);
@@ -53,9 +58,12 @@ export class ModuleService {
   removeStudentFromGroup(moduleId: string, etudiantId: string): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/modules/${moduleId}/students/${etudiantId}`);
   }
-  // In ModuleService
+
   deleteEmploiFromModule(moduleId: string, emploiId: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/modules/${moduleId}/emploi/${emploiId}`);
-}
+  }
+  removeDocumentFromModule(moduleId: string, documentId: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/modules/${moduleId}/documents/${documentId}`);
+  }
 
 }

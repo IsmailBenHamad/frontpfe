@@ -1,6 +1,7 @@
 <div class="modules-container">
     <div *ngFor="let module of modules" class="module-card">
-        <div class="course-item bg-light">
+    <div class="course-item bg-light"  [routerLink]="['/formateurprofile/module-details', module._id]">
+
             <div class="position-relative overflow-hidden">
                 <img class="img-fluid module-image" [src]="module.formations.image" alt="">
                 <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">

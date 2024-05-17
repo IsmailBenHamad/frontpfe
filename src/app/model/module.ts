@@ -6,6 +6,7 @@ import { Formation } from "./formation";
 interface Document {
   fileName: string;
   description?: string;
+  _id: string;
 }
 export interface Module {
     _id: string; // Identifiant MongoDB généré automatiquement
