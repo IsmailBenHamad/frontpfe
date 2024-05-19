@@ -11,15 +11,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let jour of ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']">
-                <td>{{ jour | titlecase }}</td>
+              <tr *ngFor="let day of days">
+                <td>{{ day | titlecase }}</td>
                 <td>
                   <ul class="list-unstyled">
-                    <li *ngFor="let plage of $any(emploi)[jour]">
-                      <ng-container *ngIf="plage.heureDebut && plage.heureFin; else noTimeRange">
+                    <li *ngFor="let plage of getDayPlages(day)">
+                      <ng-container *ngIf="plage?.heureDebut && plage?.heureFin; else noTimeRange">
                         De {{ plage.heureDebut }} à {{ plage.heureFin }}
                       </ng-container>
-                      <ng-template #noTimeRange></ng-template>
+                      <ng-template #noTimeRange>Aucune heure définie</ng-template>
                     </li>
                   </ul>
                 </td>
@@ -29,9 +29,7 @@
         </div>
       </div>
     </div>
-    <!-- Add Delete button -->
-    <button type="button" class="btn btn-danger mt-2" (click)="deleteEmploi()">Delete</button>
+    <!-- Add Print button -->
     <button type="button" class="btn btn-primary mt-2" (click)="printEmploi()">Print</button>
-
   </div>
   

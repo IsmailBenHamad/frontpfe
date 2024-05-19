@@ -23,8 +23,26 @@ export class FormateurLayoutComponent implements OnInit {
     this.enseig = this.authService.getEnsegnant();
     this.compte = this.authService.getCompteInfo(); // Adjust according to actual service methods
   }
-  onFileSelected(event: Event): void {
-    // Handle file selection
-    console.log('File selected:', event);
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.uploadImage(file);
+    }
   }
+  uploadImage(file: File): void {
+    if (this.compte && this.compte._id) {
+      this.accountService.uploadAccountImage(this.compte._id, file).subscribe({
+        next: (response) => {
+          console.log('Image uploaded successfully:', response);
+          if (this.compte) { // Check if compte is not null before accessing it
+            this.compte.imageUrl = response.imageUrl; // Safely update imageUrl
+          }
+        },
+        error: (error) => {
+          console.error('Error uploading image:', error);
+        }
+      });
+    }
+  }
+
 }

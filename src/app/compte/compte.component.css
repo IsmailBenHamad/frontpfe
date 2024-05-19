@@ -112,3 +112,20 @@ body {
 .example-container {
   min-height: 100vh;  /* Ensure container takes minimum height */
 }
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}
+
+.bi-file-pdf {
+  font-size: 24px;
+  color: #FF0000; /* Adjust as needed */
+}
+
+.bi-x-circle-fill {
+  cursor: pointer; /* Makes the icon clickable */
+  color: red; /* Adds color to indicate deletion, adjust as needed */
+}

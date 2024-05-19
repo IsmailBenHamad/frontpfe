@@ -12,7 +12,7 @@ export interface Emploi {
   mardi: PlageHoraire[];  
   mercredi: PlageHoraire[];
   jeudi: PlageHoraire[];
-  vendredi: PlageHoraire[];
+  vendredi: PlageHoraire[]; 
   samedi: PlageHoraire[];
   dimanche: PlageHoraire[];
 }

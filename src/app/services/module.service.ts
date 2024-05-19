@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, throwError, map } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { Module } from '../model/module';
 import { Etudiant } from '../model/etudiant';
 
@@ -65,5 +66,32 @@ export class ModuleService {
   removeDocumentFromModule(moduleId: string, documentId: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/modules/${moduleId}/documents/${documentId}`);
   }
+  addDocumentToModule(moduleId: string, file: File, description: string): Observable<any> {
+    const url = `${this.baseUrl}/modules/${moduleId}/documents`;
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('description', description);
+  
+    return this.http.post(url, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(
+      tap(event => console.log('Upload event:', event)),
+      catchError(error => {
+        console.error('Error during file upload:', error);
+        return throwError(() => new Error('File upload failed'));
+      })
+    );
+  }
+  
 
+
+  addAbsenceToModule(moduleId: string, etudiantIds: string[], date: string): Observable<any> {
+    const url = `${this.baseUrl}/modules/${moduleId}/absences`;
+    const body = {
+      etudiantIds: etudiantIds,
+      date: date
+    };
+    return this.http.post(url, body);
+  }
 }

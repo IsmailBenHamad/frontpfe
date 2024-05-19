@@ -33,5 +33,8 @@ export class EmploiDetailsModalComponent implements OnInit {
       error: (error) => console.error('Error removing and deleting emploi from module:', error)
     });
 }
+printEmploi(): void {
+  window.print();
+}
 
 }
