@@ -90,6 +90,7 @@ export class ModuleDetailsComponent implements OnInit {
 
   openDocument(url: string): void {
     window.open(url, '_blank');
+    
   }
   fetchEmploiDetails(empoiId: string, moduleId: string): void {
     this.emploiService.getEmploiById(empoiId).subscribe(
