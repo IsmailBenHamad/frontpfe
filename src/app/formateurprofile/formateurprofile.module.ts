@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { EmploiComponent } from './module-details/emploi/emploi.component';
+import { NoteManagementComponent } from './module-details/note-management/note-management.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { EmploiComponent } from './module-details/emploi/emploi.component';
     FormateurLayoutComponent,
     ModuleDetailsComponent,
     AbsenceComponent,
-    EmploiComponent
+    EmploiComponent,
+    NoteManagementComponent
   ],
   imports: [
     

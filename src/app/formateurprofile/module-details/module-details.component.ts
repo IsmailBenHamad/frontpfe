@@ -33,20 +33,27 @@ export class ModuleDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadModule();
+    this.route.params.subscribe(params => {
+      const moduleId = params['id'];
+      if (moduleId) {
+        this.loadModule(moduleId);
+      } else {
+        console.error('Module ID is undefined');
+      }
+    });
   }
-
-  loadModule(): void {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        const id = params.get('id');
-        return id ? this.moduleService.getModuleById(id) : EMPTY;
-      })
-    ).subscribe(
-      module => this.moduleSubject.next(module),
-      error => console.error('Error loading module:', error)
-    );
+  
+  loadModule(id: string): void {
+    this.moduleService.getModuleById(id).subscribe({
+      next: (module) => {
+        this.moduleSubject.next(module);
+      },
+      error: (error) => console.error('Error loading module:', error)
+    });
   }
+  
+  
+  
   onFileSelected(event: Event): void {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;

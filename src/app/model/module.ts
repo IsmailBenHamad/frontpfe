@@ -9,11 +9,13 @@ interface Document {
   _id: string;
 }
 export interface Module {
-    _id: string; // Identifiant MongoDB généré automatiquement
+    
+    _id: string; 
     nomModule: string;
     etudiants: Etudiant[]; // Tableau d'identifiants d'objets Étudiant
     enseignant: Enseignant; // Define the type as Enseignant
     formations: Formation; // Define the type as Formation
+    idModule:string;
     emploi: Emploi;
     documents: Document[];
     absences: Absence[];

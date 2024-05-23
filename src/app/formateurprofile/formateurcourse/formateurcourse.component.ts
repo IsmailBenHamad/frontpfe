@@ -1,7 +1,8 @@
-// formateurcourse.component.ts
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
+import { Compte } from 'src/app/model/compte';
+import { Enseignant } from 'src/app/model/enseignant';
 import { Module } from 'src/app/model/module';
-import { ModuleService } from 'src/app/services/module.service';
 
 @Component({
   selector: 'app-formateurcourse',
@@ -10,21 +11,24 @@ import { ModuleService } from 'src/app/services/module.service';
 })
 export class FormateurcourseComponent implements OnInit {
   modules: Module[] = [];
+  compte: Compte | null = null;
+  selectedFile: File | null = null;
+  enseig: Enseignant | null = null;
 
-  constructor(private moduleService: ModuleService) {}  // Inject ModuleService instead of AuthService
+  constructor(private authService: AuthService) {}  // Inject AuthService
 
   ngOnInit(): void {
-    this.fetchModules();
+    this.fetchAccountDetails();
   }
 
-  fetchModules(): void {
-    this.moduleService.getAllModules().subscribe({
-      next: (modules: Module[]) => {  // Type the parameter explicitly to avoid TS7006
-        this.modules = modules;
-      },
-      error: (error: any) => {  // Type the error parameter explicitly
-        console.error("Failed to load modules", error);
-      }
-    });
+  fetchAccountDetails(): void {
+    this.authService.initializeAuthState();  // Re-initialize auth state to ensure data is up-to-date
+    this.enseig = this.authService.getEnsegnant();
+    this.compte = this.authService.getCompteInfo();
+    if (this.compte) {
+        this.modules = this.authService.getModules();
+        console.log("Modules fetched:", this.modules);
+        this.modules.forEach(module => console.log("Module ID:", module._id)); // Verify each module's ID
+    }
   }
 }

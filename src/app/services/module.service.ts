@@ -94,4 +94,8 @@ export class ModuleService {
     };
     return this.http.post(url, body);
   }
+  
+  getModulesByEnseignant(enseignantId: string): Observable<Module[]> {
+    return this.http.get<Module[]>(`${this.baseUrl}/modules?enseignantId=${enseignantId}`);
+  }
 }

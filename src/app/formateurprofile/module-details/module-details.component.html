@@ -1,8 +1,9 @@
 <div *ngIf="module$ | async as module" class="module-details">
-    <h1>{{ module?.nomModule }}</h1>
-      <p><strong>Emploi:</strong> <a (click)="module.emploi._id && fetchEmploiDetails(module.emploi._id, module._id)"
-        class="text-decoration-none">
-        {{ module.emploi.nom }}
+  <h1>{{ module.nomModule }}</h1>
+  <p><strong>Emploi:</strong> 
+      <a *ngIf="module.emploi._id" (click)="fetchEmploiDetails(module.emploi._id, module._id)"
+         class="text-decoration-none">
+          {{ module.emploi.nom }}
       </a>
     </p>    
   
@@ -28,8 +29,8 @@
         
       </div>
     </div>
-    <app-absence [moduleId]="module._id"></app-absence>
-
+    <app-absence [moduleId]="module._id"></app-absence><br>
+    <app-note-management [moduleId]="module._id"></app-note-management>
 
         
 

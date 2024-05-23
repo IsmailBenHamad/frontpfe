@@ -25,7 +25,7 @@ export class AuthService {
     this.initializeAuthState();
   }
 
-  private initializeAuthState(): void {
+   initializeAuthState(): void {
     const token = localStorage.getItem(this.tokenKey);
     const compteData = localStorage.getItem('compteInfo');
     const etudiantData = localStorage.getItem('etudiantInfo');
@@ -50,6 +50,8 @@ export class AuthService {
 
       if (modulesData) {
         this.userModules = JSON.parse(modulesData);
+        console.log("Parsed modules from storage:", this.userModules);
+        this.userModules.forEach(module => console.log("Stored Module ID:", module._id));
       }
     } catch (error) {
       console.error('Error parsing data from localStorage:', error);
@@ -154,10 +156,12 @@ export class AuthService {
   getEtudiant(): Etudiant | null {
     return this.etudiantinf;
   }
+
   setEnseignant(enseignant: Enseignant) {
     this.enseignantinf = enseignant;
     localStorage.setItem('enseignantInfo', JSON.stringify(enseignant));
   }
+
   getEnsegnant(): Enseignant | null {
     return this.enseignantinf;
   }

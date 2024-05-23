@@ -51,7 +51,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: true }) // Only in development!
+  imports: [RouterModule.forRoot(routes) // Only in development!
   ],
   exports: [RouterModule]
 })
