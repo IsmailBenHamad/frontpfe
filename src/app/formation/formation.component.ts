@@ -1,3 +1,4 @@
+// src/app/formation/formation.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Formation } from '../model/formation'; // Importer le modèle de formation
 import { FormationService } from '../services/formation.service'; // Importer le service de formation
@@ -8,22 +9,40 @@ import { FormationService } from '../services/formation.service'; // Importer le
   styleUrls: ['./formation.component.css']
 })
 export class FormationComponent implements OnInit {
-  formations: Formation[] = []; // Déclarer la propriété formations et initialiser-la avec un tableau vide
+  formations: Formation[] = [];
+  filteredFormations: Formation[] = [];
+  searchText: string = '';
 
-  constructor(private formationService: FormationService) { }
+  constructor(private formationService: FormationService) {}
 
   ngOnInit(): void {
-    this.fetchFormations(); // Appeler la méthode pour récupérer les formations lors de l'initialisation du composant
+    this.getAllFormations();
   }
 
-  fetchFormations(): void {
-    this.formationService.getAllFormations().subscribe(
-      formations => {
-        this.formations = formations; // Affecter les formations récupérées au tableau formations
+  getAllFormations(): void {
+    this.formationService.getAllFormations().subscribe({
+      next: (formations) => {
+        this.formations = formations;
+        this.filteredFormations = formations; // Initialize filtered formations
       },
-      error => {
-        console.error('Erreur lors de la récupération des formations :', error);
+      error: (error) => {
+        console.error('Error fetching formations:', error);
       }
+    });
+  }
+
+  onSearchTextChange(): void {
+    this.filteredFormations = this.filterFormation();
+  }
+
+  filterFormation(): Formation[] {
+    if (!this.searchText.trim()) {
+      return this.formations; // If search text is empty, return all formations
+    }
+
+    const searchTextLowerCase = this.searchText.toLowerCase();
+    return this.formations.filter(formation =>
+      formation.nomformation.toLowerCase().includes(searchTextLowerCase)
     );
   }
 }

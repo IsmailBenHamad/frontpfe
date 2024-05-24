@@ -8,6 +8,7 @@ import { FormateurComponent } from './formateur/formateur.component';
 import { ListeCategorieComponent } from './liste-categorie/liste-categorie.component';
 import { ListeFormationComponent } from './liste-formation/liste-formation.component';
 import { AuthGuard } from '../auth.guard';
+import { AbsencenotesComponent } from './absencenotes/absencenotes.component';
 
 const routes: Routes = [
   { path: 'dashboard/etudiant', component: EtudiantComponent ,  canActivate: [AuthGuard]},
@@ -16,7 +17,9 @@ const routes: Routes = [
   { path: 'dashboard/categorie', component: CategorieComponent,  canActivate: [AuthGuard] },
   { path: 'dashboard/listecategorie', component: ListeCategorieComponent ,  canActivate: [AuthGuard]},
   { path: 'dashboard/emploi', component: EmploiComponent,  canActivate: [AuthGuard] },
-  { path: 'dashboard/module', component: ModuleComponent,  canActivate: [AuthGuard] }
+  { path: 'dashboard/module', component: ModuleComponent,  canActivate: [AuthGuard] },
+  { path: 'dashboard/absencenotes', component: AbsencenotesComponent,  canActivate: [AuthGuard] }
+
   
 ];
 

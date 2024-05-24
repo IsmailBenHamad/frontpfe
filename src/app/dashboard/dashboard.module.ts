@@ -48,6 +48,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormateurAddComponent } from './formateur/formateur-add/formateur-add.component';
 import { FormateurUpdateComponent } from './formateur/formateur-update/formateur-update.component';
 import { FormateurRegisterComponent } from './formateur/formateur-register/formateur-register.component';
+import { AbsencenotesComponent } from './absencenotes/absencenotes.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { FormateurRegisterComponent } from './formateur/formateur-register/forma
     FormateurAddComponent,
     FormateurUpdateComponent,
     FormateurRegisterComponent,
+    AbsencenotesComponent,
 
   ],
   imports: [

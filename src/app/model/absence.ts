@@ -1,6 +1,9 @@
+import { Etudiant } from './etudiant'; // Adjust the import based on your file structure
+import { Module } from './module'; // Adjust the import based on your file structure
+
 export interface Absence {
-    nomModule: string;
-    date: Date;
-    etudiantsAbsents: string[]; // Assuming the etudiantsAbsents contains IDs of students
-  }
-  
+  etudiants: Etudiant[]; 
+  module: Module; 
+  date: Date;
+  sessionNumber: number;
+}

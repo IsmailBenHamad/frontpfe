@@ -14,11 +14,9 @@ export class AuthGuard implements CanActivate {
     if (this.authService.isAuthenticatedUser() && this.authService.isAdminUser()) {
       return true;
     } else if (this.authService.isAuthenticatedUser() && !this.authService.isFormateur()) {
-      // Redirect authenticated non-admin users to another page, such as the home page
       this.router.navigate(['/formateurprofile']);
       return false;
     } else {
-      // Redirect unauthenticated users to the login page
       this.router.navigate(['/login']);
       return false;
     }

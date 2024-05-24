@@ -12,10 +12,8 @@ export class LoggedInGuard implements CanActivate {
 
   canActivate(): boolean {
     if (!this.authService.isAuthenticatedUser()) {
-      // Allow access if user is not authenticated (not logged in)
       return true;
     } else {
-      // Redirect authenticated users to another page, such as the home page
       this.router.navigate(['/home']);
       return false;
     }

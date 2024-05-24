@@ -13,6 +13,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { EmploiComponent } from './module-details/emploi/emploi.component';
 import { NoteManagementComponent } from './module-details/note-management/note-management.component';
+import { ChecknotesComponent } from './formateurcourse/checknotes/checknotes.component';
+import { CheckabsenceComponent } from './formateurcourse/checkabsence/checkabsence.component';
 
 
 @NgModule({
@@ -22,8 +24,10 @@ import { NoteManagementComponent } from './module-details/note-management/note-m
     ModuleDetailsComponent,
     AbsenceComponent,
     EmploiComponent,
-    NoteManagementComponent
-  ],
+    NoteManagementComponent,
+    ChecknotesComponent,
+    CheckabsenceComponent
+    ],
   imports: [
     
     CommonModule,

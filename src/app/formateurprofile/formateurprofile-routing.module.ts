@@ -11,6 +11,7 @@ const routes: Routes = [
     component: FormateurLayoutComponent, // All child routes will load within this layout
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'formateurcourse' },
+      
       { path: 'formateurcourse', component: FormateurcourseComponent },
       {
         path: 'module-details/:id',

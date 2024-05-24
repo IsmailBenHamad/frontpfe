@@ -7,7 +7,7 @@ import { Absence } from '../model/absence';
   providedIn: 'root'
 })
 export class AbsenceService {
-  private apiUrl = 'http://localhost:3000/api'; // L'URL de base de votre API
+  private apiUrl = 'http://localhost:3001/api'; // L'URL de base de votre API
 
   constructor(private http: HttpClient) {}
 
@@ -23,5 +23,8 @@ export class AbsenceService {
     return this.http.post<Absence>(`${this.apiUrl}/modules/${moduleId}/absences/create`, { etudiantsAbsents });
   }
 
+  getAbsencesByModuleId(moduleId: string): Observable<Absence[]> {
+    return this.http.get<Absence[]>(`${this.apiUrl}/modules/${moduleId}/absences`);
+  }
   // Vous pouvez ajouter d'autres méthodes pour mettre à jour, supprimer, etc.
 }

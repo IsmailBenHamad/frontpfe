@@ -55,7 +55,6 @@ export class AuthService {
       }
     } catch (error) {
       console.error('Error parsing data from localStorage:', error);
-      // Optionally clear localStorage if data is corrupted
       localStorage.clear();
     }
   }

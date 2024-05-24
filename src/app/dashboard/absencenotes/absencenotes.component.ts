@@ -4,35 +4,35 @@ import { AuthService } from 'src/app/auth.service';
 import { Compte } from 'src/app/model/compte';
 import { Enseignant } from 'src/app/model/enseignant';
 import { Module } from 'src/app/model/module';
-import { ChecknotesComponent } from './checknotes/checknotes.component';
-import { CheckabsenceComponent } from './checkabsence/checkabsence.component';
-
+import { ChecknotesComponent } from 'src/app/formateurprofile/formateurcourse/checknotes/checknotes.component';
+import { CheckabsenceComponent } from 'src/app/formateurprofile/formateurcourse/checkabsence/checkabsence.component';
+import { ModuleService } from 'src/app/services/module.service';
 @Component({
-  selector: 'app-formateurcourse',
-  templateUrl: './formateurcourse.component.html',
-  styleUrls: ['./formateurcourse.component.css']
+  selector: 'app-absencenotes',
+  templateUrl: './absencenotes.component.html',
+  styleUrls: ['./absencenotes.component.css']
 })
-export class FormateurcourseComponent implements OnInit {
+export class AbsencenotesComponent implements OnInit {
   modules: Module[] = [];
   compte: Compte | null = null;
   selectedFile: File | null = null;
   enseig: Enseignant | null = null;
 
-  constructor(private authService: AuthService, private dialog: MatDialog) {}  // Inject AuthService
+  constructor(private authService: AuthService, private dialog: MatDialog, private moduleService:ModuleService) {}  // Inject AuthService
 
   ngOnInit(): void {
-    this.fetchAccountDetails();
+    this.loadModules();
   }
 
-  fetchAccountDetails(): void {
-    this.authService.initializeAuthState();  // Re-initialize auth state to ensure data is up-to-date
-    this.enseig = this.authService.getEnsegnant();
-    this.compte = this.authService.getCompteInfo();
-    if (this.compte) {
-        this.modules = this.authService.getModules();
-        console.log("Modules fetched:", this.modules);
-        this.modules.forEach(module => console.log("Module ID:", module._id)); // Verify each module's ID
-    }
+  loadModules(): void {
+    this.moduleService.getAllModules().subscribe(
+      (modules: Module[]) => {
+        this.modules = modules;
+      },
+      (error) => {
+        console.error('Error fetching modules:', error);
+      }
+    );
   }
   openCheckNotes(moduleId: string): void {
     console.log('Module ID:', moduleId); // Check if moduleId is correct
